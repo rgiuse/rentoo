@@ -1,0 +1,11 @@
+--- a/scintilla/include/ScintillaTypes.h	2026-02-03 08:49:30.336274370 +0100
++++ b/scintilla/include/ScintillaTypes.h	2026-02-03 08:48:17.060356854 +0100
+@@ -11,6 +11,8 @@
+ #ifndef SCINTILLATYPES_H
+ #define SCINTILLATYPES_H
+ 
++#include <cstdint>
++
+ namespace Scintilla {
+ 
+ // Enumerations
