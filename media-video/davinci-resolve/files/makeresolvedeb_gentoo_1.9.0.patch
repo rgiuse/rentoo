@@ -1,0 +1,154 @@
+--- makeresolvedeb_1.9.0_multi.sh	2026-04-14 13:35:48.000000000 +0200
++++ makeresolvedeb.sh	2026-04-15 14:58:17.957137306 +0200
+@@ -67,7 +67,7 @@
+     fi
+     if [[ -e "${1}" ]]; then
+ 	echo "[ERROR: UNABLE TO REPLACE DIRECTORY] $1"
+-	ERRORS=$((ERRORS+1))	
++	ERRORS=$((ERRORS+1))
+     fi
+     create_directory "${1}"
+ }
+@@ -164,8 +164,8 @@
+     copy_object "${UNPACK_DIR}"/libs/libBlackmagicRawAPI.so "${RESOLVE_BASE_DIR}"/bin/
+ 
+     # Install panel API library
+-    create_directory "${DEB_DIR}"/usr/lib/
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib/ libDaVinciPanelAPI.so
++    create_directory "${DEB_DIR}"/usr/#LIBDIR#/
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR#/ libDaVinciPanelAPI.so
+ 
+     # Add postinst commands
+     cat >> "${DEB_DIR}"/DEBIAN/postinst <<EOF
+@@ -221,8 +221,8 @@
+     copy_object "${UNPACK_DIR}"/share/default_cm_config.bin "${RESOLVE_BASE_DIR}"/share/
+ 
+     # Extract panel API library
+-    create_directory "${DEB_DIR}"/usr/lib
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libDaVinciPanelAPI.so
++    create_directory "${DEB_DIR}"/usr/#LIBDIR#
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libDaVinciPanelAPI.so
+ 
+     # BlackmagicRawAPI fixes
+     create_directory "${RESOLVE_BASE_DIR}"/bin/BlackmagicRawAPI/
+@@ -240,7 +240,7 @@
+ chmod -R a+rw /opt/resolve/Fairlight
+ chmod -R a+rw /var/BlackmagicDesign/"DaVinci Resolve"
+ EOF
+-    
++
+     # libcudafix for Resolve 16.0 & 16.1
+     if [[ "$RESOLVE_VERSION" == 16.0* ]] || [[ "$RESOLVE_VERSION" == 16.1* ]];
+     then
+@@ -284,9 +284,9 @@
+     copy_object "${UNPACK_DIR}"/share/default_cm_config.bin "${RESOLVE_BASE_DIR}"/share/
+ 
+     # Extract panel API library
+-    create_directory "${DEB_DIR}"/usr/lib
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libDaVinciPanelAPI.so
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libFairlightPanelAPI.so
++    create_directory "${DEB_DIR}"/usr/#LIBDIR#
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libDaVinciPanelAPI.so
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libFairlightPanelAPI.so
+ 
+     # BlackmagicRawAPI fixes for 17.0 & 17.1
+     if [[ "$RESOLVE_VERSION" == 17.0* ]] || [[ "$RESOLVE_VERSION" == 17.1* ]];
+@@ -344,11 +344,11 @@
+     if [[ -e "${UNPACK_DIR}"/share/remote-monitoring-log-conf.xml ]]; then
+ 	copy_object "${UNPACK_DIR}"/share/remote-monitoring-log-conf.xml "${RESOLVE_BASE_DIR}"/share/
+     fi
+-    
++
+     # Extract panel API library
+-    create_directory "${DEB_DIR}"/usr/lib
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libDaVinciPanelAPI.so
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libFairlightPanelAPI.so
++    create_directory "${DEB_DIR}"/usr/#LIBDIR#
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libDaVinciPanelAPI.so
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libFairlightPanelAPI.so
+ 
+     # Create common data dir
+     create_directory "${DEB_DIR}"/var/BlackmagicDesign/DaVinci\ Resolve
+@@ -406,9 +406,9 @@
+     done
+ 
+     # Extract panel API library
+-    create_directory "${DEB_DIR}"/usr/lib
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libDaVinciPanelAPI.so
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libFairlightPanelAPI.so
++    create_directory "${DEB_DIR}"/usr/#LIBDIR#
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libDaVinciPanelAPI.so
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libFairlightPanelAPI.so
+ 
+     # Create common data dir
+     create_directory "${DEB_DIR}"/var/BlackmagicDesign/DaVinci\ Resolve
+@@ -468,9 +468,9 @@
+     done
+ 
+     # Extract panel API library
+-    create_directory "${DEB_DIR}"/usr/lib
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libDaVinciPanelAPI.so
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libFairlightPanelAPI.so
++    create_directory "${DEB_DIR}"/usr/#LIBDIR#
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libDaVinciPanelAPI.so
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libFairlightPanelAPI.so
+ 
+     # Create common data dir
+     create_directory "${DEB_DIR}"/var/BlackmagicDesign/DaVinci\ Resolve
+@@ -536,9 +536,9 @@
+     done
+ 
+     # Extract panel API library
+-    create_directory "${DEB_DIR}"/usr/lib
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libDaVinciPanelAPI.so
+-    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/lib libFairlightPanelAPI.so
++    create_directory "${DEB_DIR}"/usr/#LIBDIR#
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libDaVinciPanelAPI.so
++    extract_tgz "${UNPACK_DIR}"/share/panels/dvpanel-framework-linux-x86_64.tgz "${DEB_DIR}"/usr/#LIBDIR# libFairlightPanelAPI.so
+ 
+     # Create common data dir
+     create_directory "${DEB_DIR}"/var/BlackmagicDesign/DaVinci\ Resolve
+@@ -561,9 +561,9 @@
+     fi
+     if [[ -e "${UNPACK_DIR}"/BlackmagicRAWPlayer ]]; then
+ 	echo "Adding BlackmagicRAWPlayer"
+-	
++
+ 	copy_object "${UNPACK_DIR}"/BlackmagicRAWPlayer "${RESOLVE_BASE_DIR}"
+-	
++
+ 	assert_object "${DEB_DIR}"/opt/resolve/graphics/blackmagicraw-player_256x256_apps.png
+ 	assert_object "${DEB_DIR}"/opt/resolve/BlackmagicRAWPlayer/BlackmagicRAWPlayer
+ 	cat > "${DEB_DIR}"/usr/share/applications/com.blackmagicdesign.rawplayer.desktop <<EOF
+@@ -582,9 +582,9 @@
+     fi
+     if [[ -e "${UNPACK_DIR}"/BlackmagicRAWSpeedTest ]]; then
+ 	echo "Adding BlackmagicRAWSpeedTest"
+-	
++
+ 	copy_object "${UNPACK_DIR}"/BlackmagicRAWSpeedTest "${RESOLVE_BASE_DIR}"
+-	
++
+ 	assert_object "${DEB_DIR}"/opt/resolve/graphics/blackmagicraw-speedtest_256x256_apps.png
+ 	assert_object "${DEB_DIR}"/opt/resolve/BlackmagicRAWSpeedTest/BlackmagicRAWSpeedTest
+ 	cat > "${DEB_DIR}"/usr/share/applications/com.blackmagicdesign.rawspeedtest.desktop <<EOF
+@@ -924,8 +924,8 @@
+ 
+ # Verify that we have the commands we need
+ check_command tar
+-check_command fakeroot
+-check_command dpkg-deb
++# check_command fakeroot
++# check_command dpkg-deb
+ echo
+ 
+ # Create destination directories
+@@ -1013,7 +1013,7 @@
+     then
+ 	ERRORS=$((ERRORS+1))
+     fi
+-    
++
+     # Clean up
+     remove_directory "./tmp"
+     remove_directory "${UNPACK_DIR}"
